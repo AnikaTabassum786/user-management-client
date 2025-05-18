@@ -22,7 +22,7 @@ const router = createBrowserRouter([
     children:[
       {
         index:true,
-        loader:()=>fetch('http://localhost:3000/users'),
+        // loader:()=>fetch('http://localhost:3000/users'),
         Component:Home
       },
       {

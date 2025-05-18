@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router';
 import { FaEye } from "react-icons/fa";
 import { MdEdit, MdDelete } from "react-icons/md";
@@ -7,7 +7,18 @@ import Swal from 'sweetalert2';
 const Home = () => {
     const initialUsers = useLoaderData();
     const [users, setUsers] = useState(initialUsers)
+    const [search, setSearch] = useState('')
     // console.log(users);
+
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/users?searchParams=${search}`)
+            .then(res => res.json())
+            .then(data => setUsers(data))
+    }, [search])
+
+
+
 
     const handleDelete = (id) => {
         console.log('deleted', id)
@@ -36,7 +47,7 @@ const Home = () => {
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
-                            const remainUsers = users.filter(user=>user._id !== id)
+                            const remainUsers = users.filter(user => user._id !== id)
                             setUsers(remainUsers)
                         }
                     })
@@ -52,6 +63,17 @@ const Home = () => {
                         Add User
                     </button>
                 </Link>
+
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Search by name"
+                        className="input mt-4 px-2 py-1 border rounded"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
+
+                </div>
             </div>
 
             <div className="overflow-x-auto">
