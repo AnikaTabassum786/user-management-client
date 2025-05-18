@@ -75,7 +75,7 @@ const Home = () => {
                                 <td className="border px-4 py-2">{user.gender}</td>
                                 <td className="border px-4 py-2">{user.status}</td>
                                 <td className="border px-4 py-2 flex gap-2">
-                                    <FaEye className="text-blue-500 cursor-pointer" />
+                                    <Link to={`/users/${user._id}`}><FaEye className="text-blue-500 cursor-pointer" /></Link>
                                     <MdEdit className="text-green-500 cursor-pointer" />
                                     <MdDelete onClick={() => handleDelete(user._id)} className="text-red-500 cursor-pointer" />
                                 </td>
