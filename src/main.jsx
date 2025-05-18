@@ -12,6 +12,7 @@ import Home from './components/Home.jsx';
 import AddUser from './components/AddUser.jsx';
 import AuthProvider from './context/AuthProvider.jsx';
 import UserDetails from './components/UserDetails.jsx';
+import UpdateUser from './components/UpdateUser.jsx';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
         loader:({params})=>fetch(`http://localhost:3000/users/${params.id}`),
         Component:UserDetails
 
+      },
+      {
+        path:'/update/:id',
+        loader:({params})=>fetch(`http://localhost:3000/users/${params.id}`),
+        Component:UpdateUser
       }
     ]
   },

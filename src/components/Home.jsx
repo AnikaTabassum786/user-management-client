@@ -23,7 +23,7 @@ const Home = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:3000/users/${id}`, {
+                fetch(`http://localhost:3000/user/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -67,7 +67,7 @@ const Home = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {Array.isArray(users) && users.map((user, index) => (
+                        {users?.map((user, index) => (
                             <tr key={user.id || index} className="hover:bg-gray-50">
                                 <td className="border px-4 py-2">{index + 1}</td>
                                 <td className="border px-4 py-2">{user.name}</td>
@@ -76,8 +76,8 @@ const Home = () => {
                                 <td className="border px-4 py-2">{user.status}</td>
                                 <td className="border px-4 py-2 flex gap-2">
                                     <Link to={`/users/${user._id}`}><FaEye className="text-blue-500 cursor-pointer" /></Link>
-                                    <MdEdit className="text-green-500 cursor-pointer" />
-                                    <MdDelete onClick={() => handleDelete(user._id)} className="text-red-500 cursor-pointer" />
+                                    <Link to={`/update/${user._id}`}><MdEdit className="text-green-500 cursor-pointer" /></Link>
+                                    <MdDelete onClick={() => handleDelete(user?._id)} className="text-red-500 cursor-pointer" />
                                 </td>
                             </tr>
                         ))}
